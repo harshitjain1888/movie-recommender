@@ -12,7 +12,7 @@ const MovieCard = ({ movie, similarity }) => {
       const title = movie.title || movie.Title;
       if (!title) return;
       try {
-        const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=83c4631c95e6a66c4adff98fb3709c7b&query=${encodeURIComponent(title)}`);
+        const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&query=${encodeURIComponent(title)}`);
         const data = await res.json();
         // Try to match exact year if possible, but fallback to first result
         if (data.results && data.results.length > 0 && data.results[0].poster_path) {
